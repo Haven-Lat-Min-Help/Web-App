@@ -1,0 +1,64 @@
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-5);
+  min-width: 0;
+}
+
+.card.critical {
+  background: var(--status-critical-bg);
+  border-color: #f3c6bf;
+}
+
+.iconWrap {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-chip);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-tint);
+  color: var(--color-primary);
+}
+
+.critical .iconWrap {
+  background: #f7d9d3;
+  color: var(--status-critical);
+}
+
+.body {
+  min-width: 0;
+}
+
+.label {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  margin-bottom: var(--space-1);
+}
+
+.value {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-ink);
+  line-height: var(--leading-tight);
+}
+
+.delta {
+  font-size: var(--text-xs);
+  margin-top: var(--space-1);
+  font-weight: var(--weight-medium);
+}
+
+.deltaGood {
+  color: var(--status-good);
+}
+
+.deltaBad {
+  color: var(--status-critical);
+}
