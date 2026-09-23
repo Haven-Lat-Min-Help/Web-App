@@ -4,6 +4,7 @@ import { AdminLogin } from './screens/AdminLogin';
 import { CreateOrganization } from './screens/CreateOrganization';
 import { Dashboard } from './screens/Dashboard';
 import { Organizations } from './screens/Organizations';
+import { Profile } from './screens/Profile';
 
 function App() {
   return (
@@ -30,6 +31,14 @@ function App() {
         element={
           <RequireSuperAdmin>
             <CreateOrganization />
+          </RequireSuperAdmin>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <RequireSuperAdmin>
+            <Profile />
           </RequireSuperAdmin>
         }
       />

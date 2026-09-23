@@ -29,3 +29,19 @@
   outline-offset: 1px;
   border-color: var(--color-primary);
 }
+
+.input:disabled {
+  background: var(--color-tint);
+  color: var(--color-muted);
+  cursor: not-allowed;
+}
+
+.inputInvalid {
+  border-color: var(--color-emergency-pressed);
+}
+
+.error {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-emergency-pressed);
+}
