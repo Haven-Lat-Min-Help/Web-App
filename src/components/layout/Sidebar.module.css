@@ -71,6 +71,8 @@
   font-weight: var(--weight-medium);
   cursor: pointer;
   text-align: left;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
 .navItem:hover:not(:disabled) {
