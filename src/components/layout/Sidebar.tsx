@@ -91,10 +91,13 @@ export function Sidebar({ open, onClose }: SidebarProps) {
         </nav>
 
         <div className={styles.footer}>
-          <button type="button" className={styles.navItem} disabled title="Settings — coming soon">
+          <NavLink
+            to="/profile"
+            className={({ isActive }) => `${styles.navItem} ${isActive ? styles.navItemActive : ''}`}
+          >
             <Settings size={18} strokeWidth={2} />
             <span>Settings</span>
-          </button>
+          </NavLink>
           <button type="button" className={styles.navItem} onClick={handleSignOut}>
             <LogOut size={18} strokeWidth={2} />
             <span>Sign out</span>
