@@ -1,5 +1,6 @@
-import { LayoutGrid, Building2, Inbox, MessagesSquare, Settings, LogOut, X } from 'lucide-react';
+import { LayoutGrid, Landmark, Building2, Inbox, MessagesSquare, Settings, LogOut, X } from 'lucide-react';
 import type { ComponentType } from 'react';
+import { NavLink } from 'react-router-dom';
 import { supabase } from '../../config/supabase';
 import havenLogo from '../../assets/haven-logo.png';
 import styles from './Sidebar.module.css';
@@ -7,14 +8,16 @@ import styles from './Sidebar.module.css';
 interface NavItem {
   label: string;
   icon: ComponentType<{ size?: number; strokeWidth?: number }>;
-  active?: boolean;
-  /** Nav destinations beyond Overview aren't built yet — surfaced, not hidden. */
+  /** Present = a real route (rendered as a NavLink); absent = comingSoon. */
+  path?: string;
+  /** Nav destinations without a path aren't built yet — surfaced, not hidden. */
   comingSoon?: boolean;
   badge?: boolean;
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: 'Overview', icon: LayoutGrid, active: true },
+  { label: 'Overview', icon: LayoutGrid, path: '/dashboard' },
+  { label: 'Organizations', icon: Landmark, path: '/organizations' },
   { label: 'Hospitals', icon: Building2, comingSoon: true },
   { label: 'Requests', icon: Inbox, comingSoon: true, badge: true },
   { label: 'Assistant logs', icon: MessagesSquare, comingSoon: true },
@@ -27,11 +30,11 @@ interface SidebarProps {
 }
 
 /**
- * Left sidebar shell: logo, primary nav, settings + sign-out footer. Only
- * "Overview" is wired to a real route today — the rest render as visibly
- * disabled so the nav matches the design without pretending pages exist
- * that haven't been built. Below --breakpoint-nav it becomes an off-canvas
- * drawer controlled by `open`/`onClose` (see AppShell).
+ * Left sidebar shell: logo, primary nav, settings + sign-out footer. Items
+ * with a `path` render as NavLinks; the rest render as visibly disabled so
+ * the nav matches the design without pretending pages exist that haven't
+ * been built. Below --breakpoint-nav it becomes an off-canvas drawer
+ * controlled by `open`/`onClose` (see AppShell).
  */
 export function Sidebar({ open, onClose }: SidebarProps) {
   async function handleSignOut() {
@@ -57,21 +60,34 @@ export function Sidebar({ open, onClose }: SidebarProps) {
         </div>
 
         <nav className={styles.nav} aria-label="Primary">
-          {NAV_ITEMS.map(({ label, icon: Icon, active, comingSoon, badge }) => (
-            <button
-              key={label}
-              type="button"
-              className={`${styles.navItem} ${active ? styles.navItemActive : ''}`}
-              disabled={comingSoon}
-              title={comingSoon ? `${label} — coming soon` : undefined}
-              aria-current={active ? 'page' : undefined}
-            >
-              <Icon size={18} strokeWidth={2} />
-              <span>{label}</span>
-              {badge && <span className={styles.navBadge} aria-hidden="true" />}
-              {comingSoon && <span className={styles.soonTag}>Soon</span>}
-            </button>
-          ))}
+          {NAV_ITEMS.map(({ label, icon: Icon, path, comingSoon, badge }) =>
+            path ? (
+              <NavLink
+                key={label}
+                to={path}
+                className={({ isActive }) =>
+                  `${styles.navItem} ${isActive ? styles.navItemActive : ''}`
+                }
+              >
+                <Icon size={18} strokeWidth={2} />
+                <span>{label}</span>
+                {badge && <span className={styles.navBadge} aria-hidden="true" />}
+              </NavLink>
+            ) : (
+              <button
+                key={label}
+                type="button"
+                className={styles.navItem}
+                disabled={comingSoon}
+                title={comingSoon ? `${label} — coming soon` : undefined}
+              >
+                <Icon size={18} strokeWidth={2} />
+                <span>{label}</span>
+                {badge && <span className={styles.navBadge} aria-hidden="true" />}
+                {comingSoon && <span className={styles.soonTag}>Soon</span>}
+              </button>
+            ),
+          )}
         </nav>
 
         <div className={styles.footer}>
