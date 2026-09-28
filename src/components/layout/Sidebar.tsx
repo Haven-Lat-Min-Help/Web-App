@@ -1,4 +1,4 @@
-import { LayoutGrid, Landmark, Building2, Inbox, MessagesSquare, Settings, LogOut, X } from 'lucide-react';
+import { LayoutGrid, Landmark, Building2, Settings, LogOut, X } from 'lucide-react';
 import type { ComponentType } from 'react';
 import { NavLink } from 'react-router-dom';
 import { supabase } from '../../config/supabase';
