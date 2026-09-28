@@ -1,0 +1,76 @@
+.allClear {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-body);
+}
+
+.gaps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.gapTitle {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-ink);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Tinted chip + ink text, never colored text — same contrast rule as StatusBadge. */
+.chip {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  color: var(--color-ink);
+}
+
+.chipWarning {
+  background: var(--status-warning-bg);
+}
+
+.chipCritical {
+  background: var(--status-critical-bg);
+}
+
+.health {
+  margin: 0;
+}
+
+.healthRow {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+}
+
+.healthRow:last-child {
+  border-bottom: none;
+}
+
+.healthRow dt {
+  color: var(--color-body);
+}
+
+.healthRow dd {
+  margin: 0;
+  color: var(--color-ink);
+  font-weight: var(--weight-medium);
+}
+
+.flag {
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--status-warning-bg);
+}

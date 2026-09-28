@@ -18,9 +18,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { label: 'Overview', icon: LayoutGrid, path: '/dashboard' },
   { label: 'Organizations', icon: Landmark, path: '/organizations' },
-  { label: 'Hospitals', icon: Building2, comingSoon: true },
-  { label: 'Requests', icon: Inbox, comingSoon: true, badge: true },
-  { label: 'Assistant logs', icon: MessagesSquare, comingSoon: true },
+  { label: 'Hospitals', icon: Building2, path: '/hospitals' },
 ];
 
 interface SidebarProps {
@@ -96,7 +94,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
             className={({ isActive }) => `${styles.navItem} ${isActive ? styles.navItemActive : ''}`}
           >
             <Settings size={18} strokeWidth={2} />
-            <span>Settings</span>
+            <span>Profile</span>
           </NavLink>
           <button type="button" className={styles.navItem} onClick={handleSignOut}>
             <LogOut size={18} strokeWidth={2} />
