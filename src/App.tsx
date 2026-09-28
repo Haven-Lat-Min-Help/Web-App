@@ -3,6 +3,7 @@ import { RequireSuperAdmin } from './components/RequireSuperAdmin';
 import { AdminLogin } from './screens/AdminLogin';
 import { CreateOrganization } from './screens/CreateOrganization';
 import { Dashboard } from './screens/Dashboard';
+import { Hospitals } from './screens/Hospitals';
 import { Organizations } from './screens/Organizations';
 import { Profile } from './screens/Profile';
 
@@ -31,6 +32,14 @@ function App() {
         element={
           <RequireSuperAdmin>
             <CreateOrganization />
+          </RequireSuperAdmin>
+        }
+      />
+      <Route
+        path="/hospitals"
+        element={
+          <RequireSuperAdmin>
+            <Hospitals />
           </RequireSuperAdmin>
         }
       />

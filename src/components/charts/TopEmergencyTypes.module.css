@@ -43,3 +43,9 @@
   border-radius: var(--radius-pill);
   background: var(--chart-hue-700);
 }
+
+.empty {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
